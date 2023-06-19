@@ -1,0 +1,96 @@
+https://onlinegdb.com/JbgYJ-RSr
+
+Password for Employee: Subham
+
+
+
+Code:
+
+class Bank:
+    def __init__(self, n, a, p):
+        self.name = n
+        self.account = a
+        self.principal = p
+
+    def display(self):
+        print("Hi", self.name, ", your account number is", self.account, "and has a balance of Rs.", self.principal)
+
+
+class Account(Bank):
+    def __init__(self, n, a, p):
+        super().__init__(n, a, p)
+
+    def deposit(self):
+        d = int(input("Enter the value you want to deposit: "))
+        self.principal += d
+        print("\nRs.", d, "is being deposited into your account\n")
+
+    def display(self):
+        super().display()
+
+    def withdraw(self):
+        d = int(input("Enter the amount you want to withdraw: "))
+        if d <= self.principal:
+            self.principal -= d
+            print("\nRs.", d, "is being debited from your account\n")
+        else:
+            print("Insufficient funds. Unable to withdraw.")
+
+
+acc1 = Account("Subham", 12020009005010, 0)
+acc2 = Account("Pritam", 12020009005011, 0)
+z = [acc1, acc2]
+
+print("Welcome to Subham E-portal Bank")
+
+u=1
+while u==1:
+
+    print("1: For Customer\t\t\t2: For Employee\t\t\t3:Exit from The E-Portal")
+    q = int(input())
+    
+    if q == 1:
+        b = int(input("Enter your Account number: "))
+        found = False
+        for account in z:
+            if account.account == b:
+                account.display()
+                found = True
+                break
+        
+        if not found:
+            print("User not found.")
+    
+        print("1: Deposit\t\t\t2: Withdraw")
+        c = int(input())
+        if c == 1:
+            account.deposit()
+        elif c == 2:
+            account.withdraw()
+        else:
+            print("Wrong input")
+    elif q == 2:
+        print("\nYou have selected the Employee option\n")
+        password = input("Enter the Password: ")
+        
+        if password == "Subham":
+            w=1
+            while w==1:
+                print("\n\nNew Entry Started\n\n")
+                print("Enter the Bank Unique no: ")
+                print("\t\t\t\t\t\t[Like: acc1]\n")
+                n=input()
+                b = input("Enter name: ")
+                c = int(input("Enter account number: "))
+                d = int(input("Enter starting balance: "))
+                a = Account(b, c, d)
+                z.append(a)
+                print("New account added successfully.")
+                print("\n\nDo you want to continue press 1, else press any value.\n")
+                w=int(input())
+            
+    elif q==3:
+        u=2
+    else:
+        print("Wrong input. Please try again.")
+print("\n\n\n\nThank--You for using Our Portal")
